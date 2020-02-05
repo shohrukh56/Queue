@@ -28,3 +28,25 @@ func Test_list_add_one(t *testing.T) {
 		t.Error("after deleting one element size must be 0, got: ", q.size)
 	}
 }
+func Test_list_add_more_than_one(t *testing.T) {
+	q := queue{}
+	q.equeue("paren")
+	q.equeue("devushka")
+	q.equeue("pensioner")
+	if q.size != 3 {
+		t.Error("after adding 3 element size must be 3, got: ", q.size)
+	}
+	if q.firstElement() != "paren" {
+		t.Error("first in queue is paren, got:", q.firstElement())
+	}
+	if q.lastElement() != "pensioner" {
+		t.Error("last in queue is pensioner, got:", q.lastElement())
+	}
+	increment := q.dequeue()
+	if increment != "paren" {
+		t.Error("the first person in line is paren, got: ", increment)
+	}
+	if q.size != 2 {
+		t.Error("after deleting one element size must be 2, got: ", q.size)
+	}
+}
